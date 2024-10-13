@@ -13,7 +13,23 @@ const WebtoonSchema = new Schema({
     },
     characters: [
         {
-              
+            name: {
+                type: String,
+                required: true
+            },
+            role: {
+                type: String,
+                required: true
+            }
         }
-    ]
-})
+    ],
+    createdAt:{
+        tyep:Date,
+        default: Date.now
+    }
+
+});
+
+WebtoonSchema.index({ title: 'text' });
+
+module.exports = mongoose.model('webtoons', WebtoonSchema);
