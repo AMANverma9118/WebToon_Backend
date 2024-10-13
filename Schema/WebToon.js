@@ -23,11 +23,14 @@ const WebtoonSchema = new Schema({
             }
         }
     ],
-    createdAt:{
-        tyep:Date,
+    imageUrl: {
+        type: String,
+        required: false 
+    },
+    createdAt: {
+        type: Date,  // Corrected the typo here
         default: Date.now
     }
-
 });
 
 WebtoonSchema.index({ title: 'text' });
