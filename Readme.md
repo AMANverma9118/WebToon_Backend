@@ -1,4 +1,6 @@
-# It is an API which store,fetch all data,fetch data by id,update data by id and delet data by id
+# This Backend first register and then Login with this API /api/user/Createuser,api/user/Login and get JWT token after that it used that token for Post,Delete and Update
+
+# It is an API which store,fetch all data,fetch data by id,update data by id and delet data by id and done by taking valid user token
 
 # It also store image according to enter id with it's own id on cloud and also save in database as link to access at any place
 

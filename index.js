@@ -24,6 +24,7 @@ app.get('/',function(req,res){
 })
 
 app.use('/api/Webtoon', require('./Routes/Routes'))
+app.use('/api/user', require('./Routes/User'))
 
 app.listen(port,()=>{
    console.log(`Server is running on http://localhost:${port}`)

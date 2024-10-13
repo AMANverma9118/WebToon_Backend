@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const WebtoonSchema = new Schema({
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
     title: {
         type: String,
         required: true,
@@ -28,8 +32,12 @@ const WebtoonSchema = new Schema({
         required: false 
     },
     createdAt: {
-        type: Date,  // Corrected the typo here
+        type: Date,
         default: Date.now
+    },
+    createdBy: {  // Creator ID (without reference to User model)
+        type: Schema.Types.ObjectId,
+        required: false
     }
 });
 
