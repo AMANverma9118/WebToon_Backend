@@ -89,5 +89,44 @@ router.get('/getwebtoon/:id', async (req, res) => {
 
 
 
+// Route 4: Update a webtoon (PUT /api/webtoons/updatewebtoon/:id)
+router.put('/updatewebtoon/:id', async (req, res) => {
+    try {
+       
+        const { title, description, characters } = req.body;
+        
+        if (!title && !description && !characters) {
+            return res.status(400).json({ error: "At least one field (title, description, or characters) is required to update." });
+        }
+
+       
+        let webtoon = await Webtoon.findById(req.params.id);
+        if (!webtoon) {
+            return res.status(404).send("Webtoon not found");
+        }
+
+   
+   const updatedWebtoon = {};
+   if (title !== undefined) updatedWebtoon.title = title;
+   if (description !== undefined) updatedWebtoon.description = description;
+   if (characters !== undefined) updatedWebtoon.characters = characters;
+
+  
+   webtoon = await Webtoon.findByIdAndUpdate(req.params.id, { $set: updatedWebtoon }, { new: true });
+
+   res.json({ webtoon });
+
+} catch (error) {
+   console.error(error.message);
+   res.status(500).send("Internal Server Error");
+}
+});
+
+
+
+
+
+
+
 
 module.exports = router;

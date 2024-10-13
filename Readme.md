@@ -2,6 +2,7 @@
 
 # It also store image according to enter id with it's own id on cloud and also save in database as link to access at any place
 
+# All the routes and logic are present in Routes file
 
 
 env file:-
