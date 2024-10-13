@@ -23,7 +23,8 @@ app.get('/',function(req,res){
     res.send('hello world')
 })
 
+app.use('/api/Webtoon', require('./Routes/Routes'))
+
 app.listen(port,()=>{
    console.log(`Server is running on http://localhost:${port}`)
 })
-
