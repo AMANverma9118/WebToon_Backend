@@ -129,5 +129,28 @@ router.put('/updatewebtoon/:id', fetchuser, [
 });
 
 
+// Route 5: Delete a webtoon (DELETE /api/webtoons/deletewebtoon/:id)
+router.delete('/deletewebtoon/:id', fetchuser, async (req, res) => {
+    try {
+        let webtoon = await Webtoon.findById(req.params.id);
+        if (!webtoon) {
+            return res.status(404).json({ error: "Webtoon not found" });
+        }
+
+      
+        if (webtoon.createdBy.toString() !== req.user.id) {
+            return res.status(403).json({ error: "User not authorized to delete this webtoon" });
+        }
+
+       
+        await Webtoon.findByIdAndDelete(req.params.id);
+
+        res.json({ success: "Webtoon has been deleted", webtoon });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 
 module.exports = router;
