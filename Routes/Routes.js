@@ -127,6 +127,8 @@ router.put(
         return res.status(404).send("Webtoon not found");
       }
 
+      console.log("Webtoon createdBy:", webtoon.createdBy);
+
       if (webtoon.createdBy.toString() !== req.user.id) {
         return res
           .status(403)
